@@ -1,7 +1,8 @@
 package testrepo;
 
+import listeners.UIReportListener;
+import listeners.UITestListener;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -9,18 +10,19 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import utils.PropertyUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 所有testng测试类的基类，用来存放公共变量和方法
  * 包括：testng中setup和teardown的公共实现，各自类可以重写
  * Created by xualvin on 7/7/18.
  */
+@Listeners({UITestListener.class, UIReportListener.class})
 public class BaseTest {
     //selenium web driver
     protected WebDriver driver;
